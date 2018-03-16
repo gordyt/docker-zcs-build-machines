@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+  centos7:
+    build:
+      context: .
+      dockerfile: Dockerfile-ubuntu16
+    image: zimbra/zcs-build:ubuntu16
+    container_name: ubuntu16
+    domainname: test
+    env_file: ./github.env
+    hostname: ubuntu16
+    volumes:
+      - ./DOT-ssh:/DOT-ssh
+      

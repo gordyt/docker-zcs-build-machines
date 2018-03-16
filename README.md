@@ -23,3 +23,20 @@ If you have already built the image:
 ### Down
 
     docker-compose -f docker-compose-centos7.yml down
+
+## Ubuntu 16
+
+### Up
+
+If you have not already built the image:
+
+    docker-compose -f docker-compose-ubuntu16.yml up --build -d
+
+If you have already built the image:
+
+    docker-compose -f docker-compose-ubuntu16.yml up -d
+
+### Down
+
+    docker-compose -f docker-compose-ubuntu16.yml down
+
