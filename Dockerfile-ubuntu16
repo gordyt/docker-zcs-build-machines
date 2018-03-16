@@ -1,5 +1,12 @@
 FROM zimbra/zm-base-os:devcore-ubuntu-16.04
 
+USER root
+# Trick build into skipping resolvconf as docker overrides for DNS
+# This is currently required by our installer script. Hopefully be
+# fixed soon.  The `zimbra-os-requirements` packages depends
+# on the `resolvconf` package, and configuration of that is what
+# is breaking install.sh
+RUN echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
 # Install NETWORK build dependencies (OK even if we are building FOSS)
 USER build
 WORKDIR /home/build
