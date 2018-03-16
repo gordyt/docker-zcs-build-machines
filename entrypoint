@@ -1,0 +1,19 @@
+#!/bin/bash
+# From environment:
+# GITHUB_USER=<your github username>
+# GITHUB_KEY=<name of private key you are using; e.g., id_rsa>
+
+set -euxo pipefail
+
+[ -z "$GITHUB_USER" ] && echo "GITHUB_USER not defined" && exit 1
+[ -z "$GITHUB_KEY" ] && echo "GITHUB_KEY not defined" && exit 1
+
+
+sudo cp /DOT-ssh/* /home/build/.ssh/
+sudo chown build:build /home/build/.ssh/*
+sudo chmod 600 /home/build/.ssh/*
+echo -e "Host github.com\n\tHostName github.com\n\tUser ${GITHUB_USER}\n\tIdentityFile /home/build/.ssh/${GITHUB_KEY}\n" > ~/.ssh/config
+sudo chmod 600 /home/build/.ssh/*
+
+echo "STARUP COMPLETE"
+/bin/sleep infinity

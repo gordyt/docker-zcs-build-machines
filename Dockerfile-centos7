@@ -1,0 +1,17 @@
+FROM zimbra/zm-base-os:devcore-centos-7
+
+# Install NETWORK build dependencies (OK even if we are building FOSS)
+USER build
+WORKDIR /home/build
+RUN sudo yum -y install zlib-devel
+RUN curl -O http://cdn.sencha.com/cmd/4.0.2.67/SenchaCmd-4.0.2.67-linux-x64.run.zip
+RUN unzip SenchaCmd-4.0.2.67-linux-x64.run.zip
+RUN chmod +x SenchaCmd-4.0.2.67-linux-x64.run
+COPY ./sencha-opts /home/build/sencha-opts
+RUN ./SenchaCmd-4.0.2.67-linux-x64.run --unattendedmodeui none < /home/build/sencha-opts
+RUN rm -f /home/build/Sencha* /home/build/sencha*
+RUN mkdir -p /home/build/.ssh && chmod 700 /home/build/.ssh
+RUN mkdir -p /home/build/zcs && chmod 755 /home/build/zcs
+COPY ./entrypoint /entrypoint
+RUN sudo chmod a+x /entrypoint
+CMD ["/entrypoint"]
