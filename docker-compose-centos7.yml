@@ -8,8 +8,9 @@ services:
     image: zimbra/zcs-build:centos7
     container_name: centos7
     domainname: test
-    env_file: ./github.env
+    env_file:
+      - github.env
     hostname: centos7
     volumes:
-      - ./DOT-ssh:/DOT-ssh
-      
+      - ${REPO_DIR:-.}/DOT-ssh:/DOT-ssh
+

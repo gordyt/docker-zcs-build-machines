@@ -8,8 +8,9 @@ services:
     image: zimbra/zcs-build:ubuntu16
     container_name: ubuntu16
     domainname: test
-    env_file: ./github.env
+    env_file:
+      - github.env
     hostname: ubuntu16
     volumes:
-      - ./DOT-ssh:/DOT-ssh
-      
+      - ${REPO_DIR}/DOT-ssh:/DOT-ssh
+
