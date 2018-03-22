@@ -12,5 +12,5 @@ services:
       - github.env
     hostname: ubuntu16
     volumes:
-      - ./DOT-ssh:/DOT-ssh
+      - ${REPO_DIR:-.}/DOT-ssh:/DOT-ssh
 
