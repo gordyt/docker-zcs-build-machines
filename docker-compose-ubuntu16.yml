@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-  centos7:
+  ubuntu16:
     build:
       context: .
       dockerfile: Dockerfile-ubuntu16
@@ -12,5 +12,5 @@ services:
       - github.env
     hostname: ubuntu16
     volumes:
-      - ${REPO_DIR}/DOT-ssh:/DOT-ssh
+      - ./DOT-ssh:/DOT-ssh
 
